@@ -25,7 +25,7 @@ public class PessoaDAO implements IPessoa{
 
 	@Override
 	public PessoaBean consultar(PessoaBean pessoa) {
-		int posicao = Collections.binarySearch(pessoas, pessoa);
+		int posicao = pessoas.indexOf(pessoa);
 		return pessoas.get(posicao);
 	}
 

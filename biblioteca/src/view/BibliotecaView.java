@@ -2,13 +2,15 @@ package view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import bean.LivroBean;
-import bean.PessoaBean;
+import negocio.EmprestimoController;
 import negocio.LivroController;
 import negocio.PessoaController;
+import bean.EmprestimoBean;
+import bean.LivroBean;
+import bean.PessoaBean;
 
 
-public class view {
+public class BibliotecaView {
 	static final String MENU = "1 - Listar Pessoas: \n"
 			+ "2 - Cadastrar Pessoa: \n"
 			+ "3 - Excluir Pessoa: \n"
@@ -30,7 +32,7 @@ public class view {
 		int opcao = 0;
 		
 		do {
-			opcao = Integer.parseInt(input("Entre com a opção: "));
+			opcao = Integer.parseInt(input(MENU));
 			
 			switch (opcao) {
 			case 1: 
@@ -54,10 +56,46 @@ public class view {
 			
 			case 6:
 				excluirLivro();
+				break;
+			case 7: 
+				consultarEmprestimo();
+				break;
+			case 8:
+				realizarEmprestimo();
+				break;
+			case 9: 
+				realizarDevolucaoEmprestimo();
+				break;
 			}
 			
 		} while (opcao != 0);
 	}
+
+	private static void realizarDevolucaoEmprestimo() {
+		String ISBN = input("Entre com o ISBN");
+		EmprestimoController controller = new EmprestimoController();
+		EmprestimoBean emprestimo = controller.consultar(ISBN);
+		controller.devolver(emprestimo);
+	}
+
+	private static void realizarEmprestimo() {
+		String cpf = input("Entre com o cpf");
+		PessoaBean pessoa = new PessoaBean(null, cpf, null);
+		pessoa = new PessoaController().consultar(pessoa);
+		
+		String ISBN = input("Entre com o ISBN");
+		LivroBean livro = new LivroBean(ISBN, null, null, null);
+		livro = new LivroController().consultar(livro);
+		
+		new EmprestimoController().emprestar(livro, pessoa);
+	}
+
+	private static void consultarEmprestimo() {
+		String ISBN = input("Entre com o ISBN do livro emprestado: ");
+		EmprestimoBean emprestimo = new EmprestimoController().consultar(ISBN);
+		System.out.println(emprestimo.toString());
+	}
+		
 
 	private static void excluirLivro() {
 		String ISBN = input("Entre com ISBN");

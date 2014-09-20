@@ -22,4 +22,8 @@ public class LivroController {
 	public void excluir(LivroBean livro) {
 		livroDAO.remover(livro);
 	}
+	
+	public LivroBean consultar(LivroBean livro) {
+		return livroDAO.consultar(livro);
+	}
 }

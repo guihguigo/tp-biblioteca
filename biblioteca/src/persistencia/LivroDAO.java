@@ -25,7 +25,7 @@ public class LivroDAO implements ILivro{
 
 	@Override
 	public LivroBean consultar(LivroBean livro) {
-		int posicao = Collections.binarySearch(livros, livro);
+		int posicao = livros.indexOf(livro);
 		return livros.get(posicao);
 	}
 	

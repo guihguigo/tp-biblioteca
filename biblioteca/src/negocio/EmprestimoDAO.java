@@ -6,7 +6,7 @@ import persistencia.IEmprestimo;
 import bean.EmprestimoBean;
 
 public class EmprestimoDAO implements IEmprestimo {
-	private ArrayList<EmprestimoBean> emprestimos = new ArrayList<>();
+	private static ArrayList<EmprestimoBean> emprestimos = new ArrayList<>();
 
 	@Override
 	public void registrarEmprestimo(EmprestimoBean emprestimo) {

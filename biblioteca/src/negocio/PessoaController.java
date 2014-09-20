@@ -22,4 +22,8 @@ public class PessoaController {
 	public void excluir(PessoaBean pessoa) {
 		pessoaDAO.remover(pessoa);
 	}
+	
+	public PessoaBean consultar(PessoaBean pessoa) {
+		return pessoaDAO.consultar(pessoa);
+	}
 }

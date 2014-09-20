@@ -24,4 +24,14 @@ public class EmprestimoController {
 		Date data = new Date(System.currentTimeMillis());
 		emprestimo.setDataDevolucaoEmprestimo(data);
 	}
+	
+	public EmprestimoBean consultar(String ISBN) {
+		System.out.println(emprestimoDAO.listar().size());
+		for (EmprestimoBean emprestimo : emprestimoDAO.listar()) {
+			if (emprestimo.getLivro().getISBN().equals(ISBN));
+			return emprestimo;
+		}
+		
+		return null;
+	}
 }

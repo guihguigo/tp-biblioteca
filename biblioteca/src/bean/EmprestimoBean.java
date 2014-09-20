@@ -2,7 +2,7 @@ package bean;
 
 import java.util.Date;
 
-public class EmprestimoBean implements Comparable<LivroBean>{
+public class EmprestimoBean implements Comparable<LivroBean> {
 	private PessoaBean pessoa;
 	private LivroBean livro;
 	private Date dataEmprestimo;
@@ -14,17 +14,24 @@ public class EmprestimoBean implements Comparable<LivroBean>{
 		this.pessoa = pessoa;
 		this.livro = livro;
 		this.dataEmprestimo = dataEmprestimo;
-		this.dataDevolucaoEmprestimo = dataDevolucaoEmprestimo;
+		this.dataDevolucaoEmprestimo =  new Date(System.currentTimeMillis());
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof LivroBean
-				&& ((LivroBean)obj).getISBN().equals(
-						this.livro.getISBN()))
-			return true;
-		
-			return false;
+		if (obj instanceof EmprestimoBean
+				&& ((EmprestimoBean) obj).getLivro().getISBN()
+						.equals(this.livro.getISBN()))
+			;
+
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return pessoa.toString() + " | " + livro.toString() + " | "
+				+ "Data Emprestimo: " + dataEmprestimo.toString()
+				+ " Data Devolução: " + dataDevolucaoEmprestimo.toString();
 	}
 
 	@Override
@@ -64,7 +71,5 @@ public class EmprestimoBean implements Comparable<LivroBean>{
 	public void setDataDevolucaoEmprestimo(Date dataDevolucaoEmprestimo) {
 		this.dataDevolucaoEmprestimo = dataDevolucaoEmprestimo;
 	}
-	
-	
 
 }
