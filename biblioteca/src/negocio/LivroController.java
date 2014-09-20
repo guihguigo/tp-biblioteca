@@ -8,22 +8,18 @@ import bean.LivroBean;
 public class LivroController {
 	private LivroDAO livroDAO;
 	
-	public ArrayList<LivroBean> listarLivro(){
+	public LivroController() {
 		livroDAO = new LivroDAO();
-		
+	}
+	public ArrayList<LivroBean> listar(){
 		return livroDAO.listar();
 	}
 	
-	public boolean cadastrarLivro(LivroBean livroBean) {
-		livroDAO = new LivroDAO();
+	public void salvar(LivroBean livroBean) {
 		livroDAO.incluir(livroBean);
-		
-		return true;
 	}
 	
-	public boolean excluirLivro(LivroBean livro) {
+	public void excluir(LivroBean livro) {
 		livroDAO.remover(livro);
-		
-		return true;
 	}
 }

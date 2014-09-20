@@ -8,23 +8,18 @@ import persistencia.PessoaDAO;
 public class PessoaController {
 	private PessoaDAO pessoaDAO;
 	
-	public ArrayList<PessoaBean> listar() {
+	public PessoaController() {
 		pessoaDAO = new PessoaDAO();
-		
+	}
+	public ArrayList<PessoaBean> listar() {
 		return pessoaDAO.Listar();
 	}
 	
-	public boolean incluirPesso(PessoaBean pessoa) {
-		pessoaDAO = new PessoaDAO();
+	public void incluir(PessoaBean pessoa) {
 		pessoaDAO.incluir(pessoa);
-		
-		return true;
 	}
 	
-	public boolean excluirPessoa(PessoaBean pessoa) {
-		pessoaDAO = new PessoaDAO();
+	public void excluir(PessoaBean pessoa) {
 		pessoaDAO.remover(pessoa);
-		
-		return true;
 	}
 }
